@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HELLOAH KAWANI — STUDIO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2C2224;         
+    --bone:#FFF7F9;        
+    --card:#FFFFFF;        
+    --blush:#FADCE5;       
+    --blush-deep:#E8A5B8;  
+    --gold:#D4A3AD;        
+    --charcoal:#6E5A5F;    
+    --line:#F0E2E5;        
+    --ok:#6B8E78;          
+    --warn:#C86B6B;        
+    --whatsapp:#25D366;
+    --neon-green:#39FF14;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0; height: 100%; overflow: hidden;}
+  body{
+    background:var(--bone);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+  }
+  .app{
+    max-width:760px; 
+    margin:0 auto; 
+    height: 100vh;
+    height: 100dvh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  /* ---------- Home Screen (Landing) ---------- */
+  .home-screen {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://instagram.fplu28-1.fna.fbcdn.net/v/t51.82787-15/704667230_18215931952323889_1726636406497318586_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=102&ig_cache_key=MzkwMjI2NjIwMTE5NTQ1NTExOA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuOTA3LnNkci5yZWd1bGFyX3Bob3RvLkMzIn0%3D&_nc_ohc=dxEhguyP8D4Q7kNvwE1xWXS&_nc_oc=Adr2WfYqeiadBfZW6yf-5lmu7gp3XxzLiyZiMtzqsfzg6ui83w-BakL4rz9OMpY5Uju4qhx5qzKjfKBO1AYre_Dw&_nc_ad=z-m&_nc_cid=1123&_nc_zt=23&_nc_ht=instagram.fplu28-1.fna&_nc_gid=3Id4ymUgZVVzNA63qoRI6A&_nc_ss=7a22e&oh=00_AQDDkplfHYy_b8muRp784uyMjHACjXWXoUD-JhGifohXcQ&oe=6A69A77B');
+    background-size: cover;
+    background-position: left center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px 20px 20px 20px;
+    z-index: 10;
+  }
+
+  .home-screen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom, 
+      rgba(255, 247, 249, 0.2) 0%, 
+      rgba(255, 247, 249, 0.0) 50%, 
+      rgba(255, 247, 249, 0.8) 85%, 
+      rgba(255, 247, 249, 0.95) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .home-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .home-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin: 0 0 2px 0;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .home-subtitle {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--ink);
+    font-weight: 700;
+    margin-bottom: 24px;
+    opacity: 1;
+  }
+
+  .home-btn {
+    display: block;
+    width: 100%;
+    background: var(--blush-deep);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 15px 20px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity .15s, transform .15s;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(232, 165, 184, 0.4);
+    text-decoration: none;
+  }
+  .home-btn:hover { opacity: 0.95; transform: translateY(-1px); }
+  .home-btn:active { transform: translateY(0); }
+
+  /* ---------- App Container ---------- */
+  .app-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 16px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px; flex-shrink:0;}
+  .gestao-link{
+    background:none;border:none;color:var(--charcoal);
+    font-family:'Inter',sans-serif;font-size:0.8rem;
+    font-weight:600; text-transform:uppercase; letter-spacing:0.05em;
+    text-decoration:underline; text-underline-offset:3px;
+    cursor:pointer; padding:6px; opacity:0.85;
+  }
+  .gestao-link:hover{opacity:1;}
+  .gestao-link:focus-visible, button:focus-visible, input:focus-visible, .slot:focus-visible, .date-chip:focus-visible{
+    outline:2px solid var(--blush-deep); outline-offset:2px;
+  }
+
+  .hero{padding:4px 0 12px; text-align:center; flex-shrink:0;}
+  .hero h1{font-family:'Inter',sans-serif; font-weight:700; font-size:1.4rem; margin:0 0 4px; color:var(--ink); text-transform: uppercase;}
+  .hero p{color:var(--charcoal); font-size:0.88rem; margin:0 auto; max-width:440px; line-height:1.3;}
+
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:18px; margin-top:8px;
+    box-shadow: 0 6px 20px rgba(232, 165, 184, 0.1);
+  }
+  .section-label{
+    font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--gold); font-weight:600; margin-bottom:8px;
+  }
+
+  .services{
+    display:grid; 
+    grid-template-columns: 1fr 1fr;
+    gap:8px;
+  }
+  .service{
+    border:1px solid var(--line); border-radius:10px; padding:8px;
+    background:var(--bone); cursor:pointer; text-align:center;
+    font-family:'Inter',sans-serif; color:var(--ink);
+    transition:border-color .15s, background .15s;
+    display:flex; align-items:center; justify-content:center;
+    min-height: 48px;
+    user-select:none;
+  }
+  .service strong{
+    display:block; 
+    font-family:'Inter',sans-serif; 
+    font-weight:500; 
+    font-size:0.82rem;
+    line-height:1.2;
+  }
+  .service.selected{
+    border-color:var(--blush-deep); 
+    background:#FFF0F4;
+    box-shadow: 0 0 0 1px var(--blush-deep);
+  }
+  .service.selected strong{color:var(--blush-deep); font-weight:600;}
+
+  .date-chips{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:6px;
+    margin-bottom:10px;
+  }
+  .date-chip{
+    border:1px solid var(--line); background:var(--bone); border-radius:8px;
+    padding:6px 2px; font-size:0.8rem; cursor:pointer; color:var(--ink);
+    text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    transition: all 0.15s ease;
+    width: 100%;
+    font-family:'Inter',sans-serif;
+  }
+  .date-chip .day-name{ font-size:0.65rem; text-transform:uppercase; letter-spacing:0.03em; color:var(--charcoal); }
+  .date-chip .day-num{ font-family:'Inter',sans-serif; font-weight:600; font-size:0.88rem; margin-top:2px; white-space:nowrap; }
+  .date-chip.selected{ background:var(--blush-deep); border-color:var(--blush-deep); color:#fff; }
+  .date-chip.selected .day-name{ color:rgba(255,255,255,0.9); }
+  .custom-date-container{ margin-top:8px; }
+
+  @media (max-width: 480px) {
+    .app-inner { padding: 12px; }
+    .card { padding: 14px; margin-top: 6px; }
+    .services { gap: 6px; }
+    .service { padding: 6px 4px; min-height: 44px; }
+    .service strong { font-size: 0.78rem; }
+    .date-chips { gap: 4px; }
+    .date-chip { padding: 4px 1px; border-radius: 6px; }
+  }
+
+  label{display:block; font-size:0.8rem; color:var(--charcoal); margin:12px 0 4px;}
+  input[type=text], input[type=tel], input[type=date], input[type=month], input[type=number], select{
+    width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:8px;
+    background:var(--bone); font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--ink);
+  }
+  
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .input-wrapper input {
+    width: 100%;
+    padding-right: 36px;
+  }
+  .input-wrapper input.has-error {
+    border-color: var(--warn);
+    background-color: #FFF5F5;
+  }
+  .error-icon {
+    position: absolute;
+    right: 12px;
+    color: var(--warn);
+    font-size: 1.1rem;
+    font-weight: bold;
+    pointer-events: none;
+    display: none;
+  }
+  .input-wrapper input.has-error + .error-icon {
+    display: block;
+  }
+  .field-error-text {
+    color: var(--warn);
+    font-size: 0.75rem;
+    margin-top: 3px;
+    display: none;
+  }
+  .field-error-text.show {
+    display: block;
+  }
+
+  .slots{display:flex; flex-wrap:wrap; gap:6px; margin-top:6px;}
+  .slot{
+    border:1px solid var(--line); background:var(--bone); border-radius:20px;
+    padding:6px 12px; font-size:0.8rem; cursor:pointer; color:var(--ink);
+    font-family:'Inter',sans-serif;
+    transition: opacity 0.2s ease, background 0.2s ease;
+  }
+  .slot.selected{background:var(--blush-deep); border-color:var(--blush-deep); color:#fff; opacity: 1 !important;}
+  .slot.taken{opacity:0.35; text-decoration:line-through; cursor:not-allowed;}
+  .slot.past { opacity: 0.25; filter: grayscale(50%); cursor: not-allowed; border-style: dashed; }
+  
+  .slots-empty{font-size:0.82rem; color:var(--charcoal); opacity:0.75;}
+  .day-off-notice{
+    background:#FFF0F4; border:1px solid var(--blush); border-radius:10px;
+    padding:12px; text-align:center; font-size:0.85rem; color:var(--charcoal); margin-top:6px;
+  }
+
+  .btn{
+    display:inline-block; margin-top:16px; width:100%;
+    background:var(--blush-deep); color:#fff; border:none; border-radius:10px;
+    padding:12px 16px; font-size:0.9rem; font-family:'Inter',sans-serif; font-weight:600;
+    cursor:pointer; transition:opacity .15s, background .15s;
+    text-align: center;
+  }
+  .btn:hover{opacity:0.92;}
+  .btn:disabled{opacity:0.4; cursor:not-allowed;}
+  .btn-outline{
+    background:none; color:var(--charcoal); border:1px solid var(--line);
+  }
+  .btn-small{width:auto; padding:8px 12px; font-size:0.78rem; margin-top:0;}
+
+  .confirm{text-align:center; padding:10px 4px;}
+  .confirm h2{font-family:'Inter',sans-serif; font-weight:700; font-size:1.3rem; margin:0.4rem 0 6px; color: var(--ink); text-transform: uppercase;}
+  .confirm p{color:var(--charcoal); font-size:0.9rem; line-height: 1.4; margin-bottom: 0;}
+  
+  .whatsapp-box {
+    background: var(--bone);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 14px;
+    text-align: left;
+  }
+
+  .login-box{max-width:320px; margin:30px auto 0; text-align:center;}
+  .login-box h2{font-family:'Inter',sans-serif; font-weight:600; margin-bottom:4px; color: var(--ink); text-transform: uppercase;}
+  .login-box p{color:var(--charcoal); font-size:0.82rem; margin-top:0;}
+  .error-msg{color:var(--warn); font-size:0.8rem; margin-top:8px; min-height:1.2em;}
+
+  .admin-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;}
+  .admin-top h1{font-family:'Inter',sans-serif; font-weight:600; font-size:1.3rem; margin:0; color: var(--ink); text-transform: uppercase;}
+  .day-group{margin-top:16px;}
+  .booking-item{
+    display:flex; justify-content:space-between; gap:10px; align-items:center;
+    border:1px solid var(--line); border-radius:10px; padding:10px 12px; margin-bottom:6px;
+    background:var(--card); color: var(--ink);
+  }
+  .booking-item.done{opacity:0.5;}
+  .booking-item.past-slot{opacity:0.35; filter:grayscale(50%); background:var(--bone);}
+  .booking-main strong{font-family:'Inter',sans-serif; font-weight:600;}
+  .booking-main .meta{font-size:0.78rem; color:var(--charcoal); margin-top:2px;}
+  .booking-actions{display:flex; gap:6px; flex-shrink:0; flex-wrap:wrap; justify-content:flex-end;}
+  .icon-btn{
+    border:1px solid var(--line); background:var(--bone); border-radius:7px;
+    padding:6px 8px; font-size:0.75rem; cursor:pointer; color:var(--ink);
+    font-family:'Inter',sans-serif;
+  }
+  .icon-btn.warn{color:var(--warn); border-color:var(--warn);}
+  .empty-state{
+    text-align:center; padding:30px 10px; color:var(--charcoal); font-size:0.88rem;
+  }
+  .loading{text-align:center; padding:30px; color:var(--charcoal); font-size:0.85rem;}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="app" id="app"></div>
+
+<script>
+const SUPABASE_URL = 'https://dybcxbcseyjuznkiaqom.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR5YmN4YmNzZXlqdXpua2lhcW9tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ5MzM4NzIsImV4cCI6MjEwMDUwOTg3Mn0.Mv5kVzN0Z0JrRdP6wRNZd_U0SdQIydQJff3hGfXc9oE';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+window.storage = {
+  async get(key){
+    const { data, error } = await sb.from('kv_store').select('value').eq('key', key).maybeSingle();
+    if(error){ console.error('storage.get error:', error); return null; }
+    return data ? { value: data.value } : null;
+  },
+  async set(key, value){
+    const { error } = await sb.from('kv_store').upsert({ 
+      key, 
+      value, 
+      updated_at: new Date().toISOString() 
+    }, { onConflict: 'key' });
+    if(error){ console.error('storage.set error:', error); throw error; }
+  }
+};
+
+const STORAGE_KEY = 'agendamentos';
+const FINANCIAL_KEY = 'financeiro';
+const SERVICES = [
+  {id:'colocacao', nome:'Cílios — Colocação'},
+  {id:'manutencao', nome:'Cílios — Manutenção'},
+  {id:'sobrancelha', nome:'Sobrancelha'},
+  {id:'henna', nome:'Sobrancelha com Henna'},
+];
+const HORARIOS_KEY = 'horariosPorMes';
+const DEFAULT_SLOT_TIMES = (()=>{
+  const arr=[];
+  for(let h=9;h<=18;h++){
+    arr.push(String(h).padStart(2,'0')+':00');
+    if(h<18) arr.push(String(h).padStart(2,'0')+':30');
+  }
+  return arr;
+})();
+
+let state = {
+  view: 'home',
+  selectedServices: [],
+  selectedDate: '',
+  selectedTime: '',
+  showCustomCalendar: false,
+  nome: '',
+  telefone: '',
+  bookings: [],
+  financials: [],
+  horariosPorMes: {},
+  loading: true,
+  confirmed: false,
+  loginError: '',
+  adminDate: '',
+  configMonth: '',
+  telTouched: false,
+  editingBookingId: '',
+  editNome: '',
+  editTelefone: '',
+  editServico: '',
+  launchingBookingId: null,
+  finMonth: '',
+  finDate: '',
+  editingFinId: null
+};
+
+function getRawPhoneDigits(v) {
+  let r = v.replace(/\D/g, '');
+  if (r.length === 11 && !r.startsWith('0')) {
+    r = '0' + r;
+  }
+  if (r.length > 12) {
+    r = r.slice(0, 12);
+  }
+  return r;
+}
+
+function formatPhone(v) {
+  let r = getRawPhoneDigits(v);
+  if (r.length >= 3 && r.startsWith('0')) {
+    let ddd = r.slice(1, 3);
+    let resto = r.slice(3);
+    if (resto.length <= 5) {
+      return `(0${ddd}) ${resto}`;
+    } else {
+      return `(0${ddd}) ${resto.slice(0, 5)}-${resto.slice(5, 9)}`;
+    }
+  } else if (r.length > 0) {
+    if (r.length <= 2) return `(${r}`;
+    if (r.length <= 7) return `(${r.slice(0,2)}) ${r.slice(2)}`;
+    return `(${r.slice(0,2)}) ${r.slice(2,7)}-${r.slice(7,11)}`;
+  }
+  return r;
+}
+
+function isPhoneValid(tel) {
+  const digits = getRawPhoneDigits(tel);
+  return digits.length === 12 && digits.startsWith('0');
+}
+
+function getNext7Days(){
+  const days = [];
+  const weekDays = ['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
+  const now = new Date();
+  for(let i = 0; i < 7; i++){
+    const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+    const iso = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    let label = i === 0 ? 'hoje' : (i === 1 ? 'amanhã' : weekDays[d.getDay()]);
+    const num = String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0');
+    days.push({ iso, label, num });
+  }
+  return days;
+}
+
+function getMonthSlots(monthKey){
+  const list = state.horariosPorMes[monthKey];
+  return list ? [...list].sort() : [...DEFAULT_SLOT_TIMES];
+}
+function getSlotsForDate(dateStr){
+  return getMonthSlots(dateStr.slice(0,7));
+}
+async function setMonthSlots(monthKey, arr){
+  const clean = [...new Set(arr)].filter(Boolean).sort();
+  state.horariosPorMes[monthKey] = clean;
+  await saveHorarios();
+}
+
+async function loadData(){
+  try{
+    const res = await window.storage.get(STORAGE_KEY);
+    state.bookings = res && res.value ? res.value : [];
+  }catch(e){
+    console.error('Erro ao carregar agendamentos:', e);
+    state.bookings = [];
+  }
+  try{
+    const resFin = await window.storage.get(FINANCIAL_KEY);
+    state.financials = resFin && resFin.value ? resFin.value : [];
+  }catch(e){
+    console.error('Erro ao carregar financeiro:', e);
+    state.financials = [];
+  }
+  try{
+    const res2 = await window.storage.get(HORARIOS_KEY);
+    if(res2 && res2.value){
+      state.horariosPorMes = res2.value;
+    }
+  }catch(e){
+    console.error('Erro ao carregar horários por mês:', e);
+  }
+  state.loading = false;
+}
+
+async function saveBookings(){
+  try{
+    await window.storage.set(STORAGE_KEY, state.bookings);
+  }catch(e){
+    console.error('Erro ao salvar agendamentos:', e);
+  }
+}
+
+async function saveFinancials(){
+  try{
+    await window.storage.set(FINANCIAL_KEY, state.financials);
+  }catch(e){
+    console.error('Erro ao salvar financeiro:', e);
+  }
+}
+
+async function saveHorarios(){
+  try{
+    await window.storage.set(HORARIOS_KEY, state.horariosPorMes);
+  }catch(e){
+    console.error('Erro ao salvar horários:', e);
+  }
+}
+
+function render(){
+  const app = document.getElementById('app');
+  if(state.loading && state.view === 'home'){
+    app.innerHTML = `<div class="loading" style="color:var(--ink);">Carregando…</div>`;
+    return;
+  }
+  if(state.view === 'home') return renderHome(app);
+  if(state.view === 'public') return renderPublic(app);
+  if(state.view === 'login') return renderLogin(app);
+  if(state.view === 'admin') return renderAdmin(app);
+  if(state.view === 'config') return renderConfig(app);
+  if(state.view === 'financeiro') return renderFinanceiro(app);
+}
+
+function renderHome(app){
+  app.innerHTML = `
+    <div class="home-screen">
+      <div class="home-content">
+        <h1 class="home-title">HELLOAH KAWANI</h1>
+        <div class="home-subtitle">STUDIO</div>
+        <button class="home-btn" id="start-booking-btn">Agendar agora</button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('start-booking-btn').addEventListener('click', ()=>{
+    state.view = 'public';
+    render();
+  });
+}
+
+function renderPublic(app){
+  app.innerHTML = `
+    <div class="app-inner">
+      <div class="topbar">
+        <button class="gestao-link" id="home-back-btn">← Início</button>
+        <button class="gestao-link" id="gestao-btn">GESTÃO</button>
+      </div>
+
+      ${!state.confirmed ? `
+        <div class="hero">
+          <h1>Reserve seu horário</h1>
+          <p>Selecione o serviço desejado, escolha a melhor data e horário para você.</p>
+        </div>
+      ` : ''}
+
+      ${state.confirmed ? renderConfirmation() : renderForm()}
+    </div>
+  `;
+
+  document.getElementById('home-back-btn').addEventListener('click', ()=>{
+    state.view = 'home';
+    state.confirmed = false;
+    render();
+  });
+  document.getElementById('gestao-btn').addEventListener('click', goLogin);
+
+  if(!state.confirmed){
+    document.querySelectorAll('.service').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        const id = el.dataset.id;
+        if (state.selectedServices.includes(id)) {
+          state.selectedServices = state.selectedServices.filter(s => s !== id);
+        } else {
+          state.selectedServices.push(id);
+        }
+        render();
+      });
+    });
+
+    document.querySelectorAll('.date-chip[data-date]').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        state.selectedDate = el.dataset.date;
+        state.selectedTime = '';
+        state.showCustomCalendar = false;
+        render();
+      });
+    });
+
+    const otherDateBtn = document.getElementById('other-date-btn');
+    if(otherDateBtn){
+      otherDateBtn.addEventListener('click', ()=>{
+        state.showCustomCalendar = true;
+        render();
+        const dateInput = document.getElementById('date-input');
+        if(dateInput) dateInput.showPicker ? dateInput.showPicker() : dateInput.focus();
+      });
+    }
+
+    const dateInput = document.getElementById('date-input');
+    if(dateInput){
+      dateInput.addEventListener('change', (e)=>{
+        state.selectedDate = e.target.value;
+        state.selectedTime = '';
+        render();
+      });
+    }
+
+    document.querySelectorAll('.slot:not(.taken):not(.past)').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        state.selectedTime = el.dataset.time;
+        render();
+      });
+    });
+    const form = document.getElementById('booking-form');
+    if(form) form.addEventListener('submit', handleSubmit);
+    
+    const nomeInput = document.getElementById('nome-input');
+    if(nomeInput) {
+      nomeInput.addEventListener('input', (e)=>{ 
+        e.target.value = e.target.value.toUpperCase();
+        state.nome = e.target.value; 
+      });
+    }
+    
+    const telInput = document.getElementById('tel-input');
+    if(telInput) {
+      telInput.addEventListener('input', (e)=>{
+        state.telTouched = true;
+        const formatted = formatPhone(e.target.value);
+        e.target.value = formatted;
+        state.telefone = formatted;
+        
+        const valid = isPhoneValid(state.telefone);
+        const errText = document.getElementById('tel-error-text');
+        const submitBtn = document.getElementById('submit-btn');
+        
+        if (!valid) {
+          telInput.classList.add('has-error');
+          if(errText) errText.classList.add('show');
+        } else {
+          telInput.classList.remove('has-error');
+          if(errText) errText.classList.remove('show');
+        }
+
+        if(submitBtn) {
+          const hasServices = state.selectedServices.length > 0;
+          submitBtn.disabled = !hasServices || !state.selectedDate || !state.selectedTime || !state.nome.trim() || !valid;
+        }
+      });
+
+      telInput.addEventListener('blur', ()=>{
+        state.telTouched = true;
+        render();
+      });
+    }
+  }
+}
+
+function serviceName(servicoStr) {
+  if (!servicoStr) return '';
+  return servicoStr.split(',').map(id => {
+    const found = SERVICES.find(s => s.id === id.trim());
+    return found ? found.nome : id;
+  }).join(', ');
+}
+
+function formatDate(iso) {
+  if (!iso) return '';
+  const [y, m, d] = iso.split('-');
+  return `${d}/${m}/${y}`;
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function renderConfirmation(){
+  const b = state.lastBooking;
+  
+  const whatsappNumero = '5517981769860';
+  const textoMensagem = `Olá! Acabei de agendar um horário.\nNome: ${b.nome}\nServiço: ${serviceName(b.servico)}\nData: ${formatDate(b.data)}\nHorário: ${b.hora}`;
+  const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumero}&text=${encodeURIComponent(textoMensagem)}`;
+
+  return `
+    <div class="card confirm">
+      <h2>Quase lá, ${escapeHtml(b.nome)}!</h2>
+      <p>Seu horário foi pré-selecionado com sucesso. Confira os detalhes abaixo:</p>
+      
+      <div class="whatsapp-box" style="line-height: 1.5;">
+        <p style="margin: 0 0 3px 0;"><strong>Serviço:</strong> ${serviceName(b.servico)}</p>
+        <p style="margin: 0 0 3px 0;"><strong>Data:</strong> ${formatDate(b.data)}</p>
+        <p style="margin: 0 0 3px 0;"><strong>Horário:</strong> ${b.hora}</p>
+        <p style="margin: 0 0 6px 0;"><strong>Endereço:</strong> Rua Godofredo Magalhães Macedo, 18 — <a href="https://share.google/ToHYQdACiK9MvNcCy" target="_blank" style="color: var(--blush-deep); text-decoration: underline;">Abrir no maps.</a></p>
+        
+        <p style="font-size: 0.82rem; color: var(--charcoal); margin: 10px 0 0 0; border-top: 1px solid var(--line); padding-top: 8px;">O agendamento só será confirmado após você enviar a mensagem pelo WhatsApp abaixo.</p>
+        
+        <a href="${whatsappUrl}" target="_blank" class="btn" style="text-decoration: none; display: block; background: var(--whatsapp); margin-top: 10px;">
+          Enviar confirmação pelo WhatsApp
+        </a>
+      </div>
+    </div>
+  `;
+}
+
+function renderForm(){
+  const todayObj = new Date();
+  const todayStrVal = todayObj.getFullYear() + '-' + String(todayObj.getMonth() + 1).padStart(2, '0') + '-' + String(todayObj.getDate()).padStart(2, '0');
+  const next7 = getNext7Days();
+  const isCustomSelected = state.selectedDate && !next7.some(d => d.iso === state.selectedDate);
+
+  const isFullDayBlocked = state.selectedDate && state.bookings.some(b => b.data === state.selectedDate && b.servico === 'dia_bloqueado');
+
+  const takenTimes = state.selectedDate
+    ? state.bookings.filter(b=>b.data===state.selectedDate).map(b=>b.hora)
+    : [];
+
+  const currentTimeStr = String(todayObj.getHours()).padStart(2, '0') + ':' + String(todayObj.getMinutes()).padStart(2, '0');
+
+  let slotsHtml = '';
+  if (!state.selectedDate) {
+    slotsHtml = `<p class="slots-empty">Escolha a data acima para ver os horários disponíveis.</p>`;
+  } else if (isFullDayBlocked) {
+    slotsHtml = `<div class="day-off-notice">Não teremos atendimento nesta data. Por favor, escolha outro dia.</div>`;
+  } else {
+    slotsHtml = `<div class="slots">${getSlotsForDate(state.selectedDate).map(t=>{
+        const taken = takenTimes.includes(t);
+        const isToday = state.selectedDate === todayStrVal;
+        const past = isToday && t < currentTimeStr;
+        const disabled = taken || past;
+        const sel = state.selectedTime === t ? 'selected' : '';
+        
+        let cssClass = 'slot';
+        if (sel) cssClass += ' selected';
+        else if (taken) cssClass += ' taken';
+        else if (past) cssClass += ' past';
+
+        return `<button type="button" class="${cssClass}" ${disabled?'disabled':''} data-time="${t}">${t}</button>`;
+      }).join('')}</div>`;
+  }
+
+  const hasServices = state.selectedServices.length > 0;
+  const telValid = isPhoneValid(state.telefone);
+  const showTelError = state.telTouched && !telValid;
+
+  return `
+    <form class="card" id="booking-form">
+      <div class="section-label">Serviço(s) <span style="text-transform:none; font-weight:normal; opacity:0.8;">(selecione um ou mais)</span></div>
+      <div class="services">
+        ${SERVICES.map(s=>`
+          <div class="service ${state.selectedServices.includes(s.id)?'selected':''}" data-id="${s.id}" role="button" tabindex="0">
+            <strong>${s.nome}</strong>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="section-label" style="margin-top:16px;">Data e horário</div>
+      <div class="date-chips">
+        ${next7.map(d => `
+          <button type="button" class="date-chip ${state.selectedDate === d.iso ? 'selected' : ''}" data-date="${d.iso}">
+            <span class="day-name">${d.label}</span>
+            <span class="day-num">${d.num}</span>
+          </button>
+        `).join('')}
+        <button type="button" class="date-chip ${(state.showCustomCalendar || isCustomSelected) ? 'selected' : ''}" id="other-date-btn">
+          <span class="day-name">Escolher</span>
+          <span class="day-num">Outra data</span>
+        </button>
+      </div>
+
+      ${(state.showCustomCalendar || isCustomSelected) ? `
+        <div class="custom-date-container">
+          <label for="date-input" style="margin-top:6px;">Selecione uma data no calendário</label>
+          <input type="date" id="date-input" min="${todayStrVal}" value="${state.selectedDate}" required>
+        </div>
+      ` : ''}
+
+      ${slotsHtml}
+
+      ${!isFullDayBlocked ? `
+        <div class="section-label" style="margin-top:16px;">Seus dados</div>
+        <label for="nome-input">Nome</label>
+        <input type="text" id="nome-input" name="nome" required placeholder="Seu nome completo" value="${escapeHtml(state.nome)}" style="text-transform: uppercase;">
+        
+        <label for="tel-input">Telefone / WhatsApp</label>
+        <div class="input-wrapper">
+          <input type="tel" id="tel-input" name="telefone" required placeholder="(0XX) 9XXXX-XXXX" value="${escapeHtml(state.telefone)}" class="${showTelError ? 'has-error' : ''}">
+          <span class="error-icon" title="Número incompleto">❗</span>
+        </div>
+        <div class="field-error-text ${showTelError ? 'show' : ''}" id="tel-error-text">O número deve conter 12 dígitos (Ex: 0 + DDD + 9 + 8 números).</div>
+
+        <button class="btn" type="submit" id="submit-btn" ${(!hasServices||!state.selectedDate||!state.selectedTime||!telValid||!state.nome.trim())?'disabled':''}>
+          Agendar
+        </button>
+      ` : ''}
+    </form>
+  `;
+}
+
+async function handleSubmit(e){
+  e.preventDefault();
+  state.telTouched = true;
+
+  const nome = document.getElementById('nome-input')?.value.trim().toUpperCase();
+  const rawInput = document.getElementById('tel-input')?.value || '';
+  const digits = getRawPhoneDigits(rawInput);
+
+  if(!nome || !isPhoneValid(digits) || state.selectedServices.length === 0 || !state.selectedDate || !state.selectedTime) {
+    render();
+    return;
+  }
+
+  const booking = {
+    id: 'b_' + Date.now() + '_' + Math.random().toString(36).slice(2,7),
+    nome, 
+    telefone: formatPhone(digits),
+    servico: state.selectedServices.join(','),
+    data: state.selectedDate,
+    hora: state.selectedTime,
+    status: 'pendente',
+    criadoEm: new Date().toISOString(),
+  };
+
+  const btn = e.target.querySelector('button[type=submit]');
+  if(btn){
+    btn.disabled = true;
+    btn.textContent = 'Processando…';
+  }
+
+  state.bookings.push(booking);
+  await saveBookings();
+
+  state.lastBooking = booking;
+  state.confirmed = true;
+  render();
+}
+
+function goLogin(){
+  state.view = 'login';
+  state.loginError = '';
+  render();
+}
+
+function renderLogin(app){
+  app.innerHTML = `
+    <div class="app-inner">
+      <div class="topbar">
+        <button class="gestao-link" id="back-btn">← Voltar</button>
+      </div>
+      <div class="login-box">
+        <h2>Painel de Gestão</h2>
+        <p>Digite a senha para ver os agendamentos.</p>
+        <form id="login-form" style="margin-top:16px;">
+          <input type="text" inputmode="numeric" id="pass-input" placeholder="Senha" autocomplete="off" style="text-align:center; letter-spacing:0.3em; font-size:1.1rem;">
+          <button class="btn" type="submit" id="entrar-btn">Entrar</button>
+        </form>
+        <div class="error-msg">${state.loginError}</div>
+      </div>
+    </div>
+  `;
+  document.getElementById('back-btn').addEventListener('click', ()=>{
+    state.view = 'public';
+    render();
+  });
+
+  const tryLogin = ()=>{
+    const val = document.getElementById('pass-input').value.trim();
+    if(val === '1234'){
+      state.view = 'admin';
+      state.adminDate = todayStr();
+      render();
+    } else {
+      state.loginError = 'Senha incorreta.';
+      render();
+      document.getElementById('pass-input').focus();
+    }
+  };
+
+  document.getElementById('login-form').addEventListener('submit', (e)=>{
+    e.preventDefault();
+    tryLogin();
+  });
+  document.getElementById('entrar-btn').addEventListener('click', (e)=>{
+    e.preventDefault();
+    tryLogin();
+  });
+  document.getElementById('pass-input').focus();
+}
+
+async function refreshAdmin(){
+  await loadData();
+  render();
+}
+
+function todayStr(){
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+function shiftDate(iso, days){
+  const d = new Date(iso + 'T00:00:00');
+  d.setDate(d.getDate() + days);
+  return d.toISOString().slice(0,10);
+}
+function weekdayLabel(iso){
+  const dias = ['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
+  const d = new Date(iso + 'T00:00:00');
+  return dias[d.getDay()];
+}
+
+function isBookingPast(b) {
+  if (!b.data || !b.hora) return false;
+  const bookingDateTime = new Date(b.data + 'T' + b.hora + ':00');
+  return new Date() >= bookingDateTime;
+}
+
+function formatMonthName(yyyy_mm) {
+  if (!yyyy_mm) return '';
+  const [y, m] = yyyy_mm.split('-');
+  const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+  const monthName = meses[parseInt(m, 10) - 1] || m;
+  return `${monthName}/${y}`;
+}
+
+function renderAdmin(app){
+  if(!state.adminDate) state.adminDate = todayStr();
+  const date = state.adminDate;
+  const dayBookings = state.bookings.filter(b=>b.data===date);
+  const isFullDayBlocked = dayBookings.some(b => b.servico === 'dia_bloqueado');
+
+  const byTime = {};
+  dayBookings.forEach(b=>{ if(b.hora) byTime[b.hora] = b; });
+
+  const total = dayBookings.filter(b=>b.servico!=='bloqueado' && b.servico!=='dia_bloqueado').length;
+
+  const todayObj = new Date();
+  const todayStrVal = todayObj.getFullYear() + '-' + String(todayObj.getMonth() + 1).padStart(2, '0') + '-' + String(todayObj.getDate()).padStart(2, '0');
+  const isToday = date === todayStrVal;
+  const currentTimeStr = String(todayObj.getHours()).padStart(2, '0') + ':' + String(todayObj.getMinutes()).padStart(2, '0');
+
+  app.innerHTML = `
+    <div class="app-inner">
+      <div class="topbar">
+        <button class="gestao-link" id="back-btn">← Voltar</button>
+      </div>
+      <div class="admin-top">
+        <h1>Painel de horários</h1>
+        <div style="display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end;">
+          <button class="icon-btn" id="fin-nav-btn" style="border-color:var(--blush-deep); color:var(--blush-deep); font-weight:600;">Financeiro</button>
+          <button class="icon-btn" id="config-btn">Configurar</button>
+        </div>
+      </div>
+
+      <div class="card" style="padding:14px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+          <button class="icon-btn" id="prev-day">←</button>
+          <div style="text-align:center;">
+            <div style="font-family:'Inter',sans-serif; font-weight:600; font-size:1rem; color:var(--ink);">${formatDate(date)}</div>
+            <div style="font-size:0.75rem; color:var(--charcoal); opacity:0.8;">${weekdayLabel(date)} · ${isFullDayBlocked ? 'Dia Bloqueado' : total + ' agendamento' + (total===1?'':'s')}</div>
+          </div>
+          <button class="icon-btn" id="next-day">→</button>
+        </div>
+        <input type="date" id="admin-date-input" value="${date}" style="margin-top:10px;">
+        
+        <div style="margin-top:10px; text-align:center;">
+          ${isFullDayBlocked ? `
+            <button class="icon-btn" id="toggle-full-day-btn" style="width:100%; padding:8px; font-weight:600;">Desbloquear dia todo</button>
+          ` : `
+            <button class="icon-btn warn" id="toggle-full-day-btn" style="width:100%; padding:8px; font-weight:600;">Bloquear dia todo</button>
+          `}
+        </div>
+      </div>
+
+      <div class="day-group">
+        ${isFullDayBlocked ? `
+          <div class="empty-state" style="background:var(--card); border:1px solid var(--line); border-radius:10px; padding:20px;">
+            Este dia está <strong>totalmente bloqueado</strong> para agendamentos.
+          </div>
+        ` : getSlotsForDate(date).map(t=>{
+          const b = byTime[t];
+          const isPastSlot = isToday && t < currentTimeStr;
+
+          if(state.editingBookingId && b && b.id === state.editingBookingId){
+            return `
+              <div class="card" style="margin-top:0; margin-bottom:6px; border: 1px solid var(--blush-deep);">
+                <strong>Editando agendamento (${t})</strong>
+                <label style="margin-top:6px;">Nome:</label>
+                <input type="text" id="edit-nome" value="${escapeHtml(state.editNome)}" style="text-transform: uppercase;">
+                <label>Telefone:</label>
+                <input type="text" id="edit-tel" value="${escapeHtml(state.editTelefone)}">
+                <label>Serviço:</label>
+                <select id="edit-servico">
+                  ${SERVICES.map(s => `<option value="${s.id}" ${state.editServico === s.id ? 'selected' : ''}>${s.nome}</option>`).join('')}
+                </select>
+                <div style="display:flex; gap:6px; margin-top:10px;">
+                  <button class="btn btn-small" id="save-edit-btn" style="margin-top:0; flex:1;">Salvar</button>
+                  <button class="btn btn-outline btn-small" id="cancel-edit-btn" style="margin-top:0; flex:1;">Cancelar</button>
+                </div>
+              </div>
+            `;
+          }
+
+          if(!b){
+            return `
+              <div class="booking-item ${isPastSlot ? 'past-slot' : ''}">
+                <div class="booking-main">
+                  <strong>${t}</strong>
+                  <div class="meta">${isPastSlot ? 'Horário passado' : 'Livre'}</div>
+                </div>
+                <div class="booking-actions">
+                  ${!isPastSlot ? `<button class="icon-btn warn" data-block="${t}">Bloquear</button>` : ''}
+                </div>
+              </div>
+            `;
+          } else if(b.servico === 'bloqueado'){
+            return `
+              <div class="booking-item done ${isPastSlot ? 'past-slot' : ''}">
+                <div class="booking-main">
+                  <strong>${t}</strong>
+                  <div class="meta">Horário Bloqueado</div>
+                </div>
+                <div class="booking-actions">
+                  <button class="icon-btn" data-unblock="${b.id}">Desbloquear</button>
+                </div>
+              </div>
+            `;
+          } else {
+            const pastTime = isBookingPast(b);
+            const isLaunched = b.financeiroLancado;
+
+            return `
+              <div class="booking-item ${isPastSlot ? 'past-slot' : ''}">
+                <div class="booking-main">
+                  <strong>${t} — ${escapeHtml(b.nome)}</strong>
+                  <div class="meta">${serviceName(b.servico)} · ${escapeHtml(b.telefone)}</div>
+                  ${isLaunched ? `<div class="meta" style="color:var(--ok); font-weight:600; margin-top:2px;">✓ Financeiro lançado</div>` : ''}
+                </div>
+                <div class="booking-actions">
+                  ${pastTime && !isLaunched ? `<button class="icon-btn" data-launch-fin="${b.id}" style="border-color:var(--neon-green); background:var(--neon-green); color:#111; font-weight:700; box-shadow: 0 0 8px rgba(57,255,20,0.5);">Lançar Financeiro</button>` : ''}
+                  <button class="icon-btn" data-edit="${b.id}">Editar</button>
+                  <button class="icon-btn warn" data-cancel="${b.id}">Excluir</button>
+                </div>
+              </div>
+              ${state.launchingBookingId === b.id ? `
+                <div class="card" style="margin-top:-2px; margin-bottom:6px; border:1px solid var(--blush-deep);">
+                  <strong>Lançamento Financeiro — ${escapeHtml(b.nome)}</strong>
+                  <div class="meta" style="margin-bottom:8px;">Serviço: ${serviceName(b.servico)}</div>
+                  <label>Valor (R$):</label>
+                  <input type="number" step="0.01" id="new-fin-valor" placeholder="Ex: 150.00">
+                  <label>Forma de Pagamento:</label>
+                  <select id="new-fin-forma">
+                    <option value="PIX">PIX</option>
+                    <option value="Dinheiro">Dinheiro</option>
+                    <option value="Cartão Débito">Cartão Débito</option>
+                    <option value="Cartão Crédito">Cartão Crédito</option>
+                  </select>
+                  <label>Observação (opcional):</label>
+                  <input type="text" id="new-fin-obs" placeholder="Ex: Pago à vista">
+                  <div style="display:flex; gap:6px; margin-top:10px;">
+                    <button class="btn btn-small" id="save-new-fin" style="margin-top:0; flex:1;">Salvar</button>
+                    <button class="btn btn-outline btn-small" id="cancel-new-fin" style="margin-top:0; flex:1;">Cancelar</button>
+                  </div>
+                </div>
+              ` : ''}
+            `;
+          }
+        }).join('')}
+      </div>
+    </div>
+  `;
+
+  document.getElementById('back-btn').addEventListener('click', ()=>{
+    state.view = 'public';
+    render();
+  });
+  document.getElementById('config-btn').addEventListener('click', ()=>{
+    state.view = 'config';
+    state.configMonth = date.slice(0,7);
+    render();
+  });
+  document.getElementById('fin-nav-btn').addEventListener('click', ()=>{
+    state.view = 'financeiro';
+    state.finMonth = date.slice(0,7);
+    state.finDate = date; 
+    render();
+  });
+  document.getElementById('prev-day').addEventListener('click', ()=>{
+    state.adminDate = shiftDate(state.adminDate, -1);
+    render();
+  });
+  document.getElementById('next-day').addEventListener('click', ()=>{
+    state.adminDate = shiftDate(state.adminDate, 1);
+    render();
+  });
+  document.getElementById('admin-date-input').addEventListener('change', (e)=>{
+    state.adminDate = e.target.value;
+    render();
+  });
+
+  document.getElementById('toggle-full-day-btn').addEventListener('click', async ()=>{
+    if(isFullDayBlocked){
+      state.bookings = state.bookings.filter(b => !(b.data === date && b.servico === 'dia_bloqueado'));
+    } else {
+      state.bookings = state.bookings.filter(b => b.data !== date);
+      state.bookings.push({
+        id: 'block_' + Date.now(),
+        nome: 'Dia Bloqueado',
+        telefone: '',
+        servico: 'dia_bloqueado',
+        data: date,
+        hora: '',
+        status: 'bloqueado',
+        criadoEm: new Date().toISOString()
+      });
+    }
+    await saveBookings();
+    render();
+  });
+
+  document.querySelectorAll('[data-block]').forEach(el=>{
+    el.addEventListener('click', async ()=>{
+      const t = el.dataset.block;
+      state.bookings.push({
+        id: 'block_' + Date.now() + '_' + Math.random().toString(36).slice(2,5),
+        nome: 'Bloqueado',
+        telefone: '',
+        servico: 'bloqueado',
+        data: date,
+        hora: t,
+        status: 'bloqueado',
+        criadoEm: new Date().toISOString()
+      });
+      await saveBookings();
+      render();
+    });
+  });
+
+  document.querySelectorAll('[data-unblock]').forEach(el=>{
+    el.addEventListener('click', async ()=>{
+      const id = el.dataset.unblock;
+      state.bookings = state.bookings.filter(b => b.id !== id);
+      await saveBookings();
+      render();
+    });
+  });
+
+  document.querySelectorAll('[data-edit]').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const id = el.dataset.edit;
+      const b = state.bookings.find(x => x.id === id);
+      if(b){
+        state.editingBookingId = id;
+        state.editNome = b.nome;
+        state.editTelefone = b.telefone;
+        state.editServico = b.servico.split(',')[0] || SERVICES[0].id;
+        render();
+      }
+    });
+  });
+
+  const editNomeInput = document.getElementById('edit-nome');
+  if(editNomeInput){
+    editNomeInput.addEventListener('input', (e)=>{
+      e.target.value = e.target.value.toUpperCase();
+      state.editNome = e.target.value;
+    });
+  }
+
+  document.querySelectorAll('[data-launch-fin]').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      state.launchingBookingId = el.dataset.launchFin;
+      render();
+    });
+  });
+
+  const saveNewFin = document.getElementById('save-new-fin');
+  if(saveNewFin){
+    saveNewFin.addEventListener('click', async ()=>{
+      const bookingId = state.launchingBookingId;
+      const b = state.bookings.find(x => x.id === bookingId);
+      if(!b) return;
+
+      const valor = parseFloat(document.getElementById('new-fin-valor').value) || 0;
+      const formaPagamento = document.getElementById('new-fin-forma').value;
+      const observacao = document.getElementById('new-fin-obs').value.trim();
+
+      const finRecord = {
+        id: 'fin_' + Date.now() + '_' + Math.random().toString(36).slice(2,7),
+        bookingId: b.id,
+        cliente: b.nome,
+        servico: serviceName(b.servico),
+        valor,
+        formaPagamento,
+        observacao,
+        data: b.data,
+        criadoEm: new Date().toISOString()
+      };
+
+      state.financials.push(finRecord);
+      await saveFinancials();
+
+      b.financeiroLancado = true;
+      b.financeiroId = finRecord.id;
+      await saveBookings();
+
+      state.launchingBookingId = null;
+      render();
+    });
+  }
+
+  const cancelNewFin = document.getElementById('cancel-new-fin');
+  if(cancelNewFin){
+    cancelNewFin.addEventListener('click', ()=>{
+      state.launchingBookingId = null;
+      render();
+    });
+  }
+
+  const saveEditBtn = document.getElementById('save-edit-btn');
+  if(saveEditBtn){
+    saveEditBtn.addEventListener('click', async ()=>{
+      const nomeVal = document.getElementById('edit-nome').value.trim().toUpperCase();
+      const telVal = document.getElementById('edit-tel').value.trim();
+      const servVal = document.getElementById('edit-servico').value;
+
+      if(!nomeVal){
+        alert('O nome não pode ficar vazio.');
+        return;
+      }
+
+      state.bookings = state.bookings.map(b => {
+        if(b.id === state.editingBookingId){
+          return {
+            ...b,
+            nome: nomeVal,
+            telefone: telVal,
+            servico: servVal
+          };
+        }
+        return b;
+      });
+      await saveBookings();
+
+      let financialUpdated = false;
+      state.financials = state.financials.map(f => {
+        if(f.bookingId === state.editingBookingId){
+          financialUpdated = true;
+          return {
+            ...f,
+            cliente: nomeVal,
+            servico: serviceName(servVal)
+          };
+        }
+        return f;
+      });
+
+      if(financialUpdated){
+        await saveFinancials();
+      }
+
+      state.editingBookingId = null;
+      render();
+    });
+  }
+
+  const cancelEditBtn = document.getElementById('cancel-edit-btn');
+  if(cancelEditBtn){
+    cancelEditBtn.addEventListener('click', ()=>{
+      state.editingBookingId = null;
+      render();
+    });
+  }
+
+  document.querySelectorAll('[data-cancel]').forEach(el=>{
+    el.addEventListener('click', async ()=>{
+      const id = el.dataset.cancel;
+      if(confirm('Deseja realmente excluir este agendamento?')){
+        state.bookings = state.bookings.filter(b => b.id !== id);
+        await saveBookings();
+        render();
+      }
+    });
+  });
+}
+
+function renderConfig(app){
+  const mKey = state.configMonth || todayStr().slice(0,7);
+  const currentSlots = getMonthSlots(mKey);
+
+  app.innerHTML = `
+    <div class="app-inner">
+      <div class="topbar">
+        <button class="gestao-link" id="back-admin">← Voltar ao Painel</button>
+      </div>
+      <div class="admin-top">
+        <h1>Configurar Horários</h1>
+      </div>
+
+      <div class="card">
+        <label for="config-month-input">Mês de referência</label>
+        <input type="month" id="config-month-input" value="${mKey}" style="margin-bottom:12px;">
+
+        <div class="section-label">Horários Padrão para este Mês</div>
+        <div style="font-size:0.8rem; color:var(--charcoal); margin-bottom:10px;">
+          Adicione ou remova os horários disponíveis que aparecerão para os clientes neste mês.
+        </div>
+
+        <div class="slots" id="config-slots-list" style="margin-bottom:14px;">
+          ${currentSlots.map(t=>`
+            <div class="slot selected" style="display:inline-flex; align-items:center; gap:6px;">
+              <span>${t}</span>
+              <button type="button" data-rem-slot="${t}" style="background:none; border:none; color:#fff; cursor:pointer; font-weight:bold; padding:0;">×</button>
+            </div>
+          `).join('')}
+        </div>
+
+        <div style="display:flex; gap:8px;">
+          <input type="time" id="new-slot-time" style="max-width:140px;">
+          <button class="btn btn-small" id="add-slot-btn" style="margin-top:0;">Adicionar Horário</button>
+        </div>
+
+        <div style="margin-top:16px; border-top:1px solid var(--line); padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
+          <button class="btn btn-outline btn-small" id="reset-default-slots">Restaurar Padrão (9h às 18h)</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('back-admin').addEventListener('click', ()=>{
+    state.view = 'admin';
+    render();
+  });
+
+  document.getElementById('config-month-input').addEventListener('change', (e)=>{
+    state.configMonth = e.target.value;
+    render();
+  });
+
+  document.querySelectorAll('[data-rem-slot]').forEach(el=>{
+    el.addEventListener('click', async ()=>{
+      const t = el.dataset.remSlot;
+      const updated = currentSlots.filter(x => x !== t);
+      await setMonthSlots(mKey, updated);
+      render();
+    });
+  });
+
+  document.getElementById('add-slot-btn').addEventListener('click', async ()=>{
+    const val = document.getElementById('new-slot-time').value;
+    if(!val) return;
+    const updated = [...currentSlots, val];
+    await setMonthSlots(mKey, updated);
+    render();
+  });
+
+  document.getElementById('reset-default-slots').addEventListener('click', async ()=>{
+    if(confirm('Deseja restaurar os horários padrão (de hora em hora e meia em meia das 9h às 18h)?')){
+      delete state.horariosPorMes[mKey];
+      await saveHorarios();
+      render();
+    }
+  });
+}
+
+function renderFinanceiro(app){
+  if(!state.finMonth) state.finMonth = todayStr().slice(0,7);
+  if(!state.finDate) state.finDate = todayStr();
+
+  const mKey = state.finMonth;
+  const dVal = state.finDate;
+
+  const filteredFin = state.financials.filter(f => f.data && f.data.startsWith(mKey));
+  const totalMes = filteredFin.reduce((acc, f) => acc + (parseFloat(f.valor) || 0), 0);
+
+  const totalDia = state.financials.filter(f => f.data === dVal).reduce((acc, f) => acc + (parseFloat(f.valor) || 0), 0);
+  const qtdMes = filteredFin.length;
+
+  app.innerHTML = `
+    <div class="app-inner">
+      <div class="topbar">
+        <button class="gestao-link" id="back-admin">← Voltar ao Painel</button>
+      </div>
+      <div class="admin-top">
+        <h1>Financeiro</h1>
+      </div>
+
+      <div class="card" style="padding:14px;">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:12px;">
+          <div>
+            <label for="fin-month-select">Filtrar por Mês</label>
+            <input type="month" id="fin-month-select" value="${mKey}">
+          </div>
+          <div>
+            <label for="fin-date-select">Data do Dia</label>
+            <input type="date" id="fin-date-select" value="${dVal}">
+          </div>
+        </div>
+
+        <div class="section-label">Dashboard (${formatMonthName(mKey)})</div>
+        <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:8px; margin-top:8px;">
+          <div style="background:var(--bone); padding:10px; border-radius:8px; border:1px solid var(--line);">
+            <div style="font-size:0.72rem; color:var(--charcoal); text-transform:uppercase;">Total do Dia (${formatDate(dVal)})</div>
+            <div style="font-size:1.1rem; font-weight:700; color:var(--ink); margin-top:2px;">R$ ${totalDia.toFixed(2)}</div>
+          </div>
+          <div style="background:var(--bone); padding:10px; border-radius:8px; border:1px solid var(--line);">
+            <div style="font-size:0.72rem; color:var(--charcoal); text-transform:uppercase;">Total do Mês</div>
+            <div style="font-size:1.1rem; font-weight:700; color:var(--ink); margin-top:2px;">R$ ${totalMes.toFixed(2)}</div>
+          </div>
+          <div style="background:var(--bone); padding:10px; border-radius:8px; border:1px solid var(--line); grid-column: span 2;">
+            <div style="font-size:0.72rem; color:var(--charcoal); text-transform:uppercase;">Atendimentos (Mês)</div>
+            <div style="font-size:1.1rem; font-weight:700; color:var(--ink); margin-top:2px;">${qtdMes}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:16px;">Lançamentos (${formatMonthName(mKey)})</div>
+      <div class="day-group" style="margin-top:8px;">
+        ${filteredFin.length === 0 ? `
+          <div class="empty-state" style="background:var(--card); border:1px solid var(--line); border-radius:10px; padding:20px;">
+            Nenhum lançamento financeiro neste mês.
+          </div>
+        ` : filteredFin.map(f => {
+          if(state.editingFinId === f.id){
+            return `
+              <div class="card" style="margin-top:0; margin-bottom:6px; border: 1px solid var(--blush-deep);">
+                <strong>Editando lançamento — ${escapeHtml(f.cliente)}</strong>
+                <label style="margin-top:6px;">Valor (R$):</label>
+                <input type="number" step="0.01" id="edit-fin-valor" value="${f.valor}">
+                <label>Forma de Pagamento:</label>
+                <select id="edit-fin-forma">
+                  <option value="PIX" ${f.formaPagamento==='PIX'?'selected':''}>PIX</option>
+                  <option value="Dinheiro" ${f.formaPagamento==='Dinheiro'?'selected':''}>Dinheiro</option>
+                  <option value="Cartão Débito" ${f.formaPagamento==='Cartão Débito'?'selected':''}>Cartão Débito</option>
+                  <option value="Cartão Crédito" ${f.formaPagamento==='Cartão Crédito'?'selected':''}>Cartão Crédito</option>
+                </select>
+                <label>Observação:</label>
+                <input type="text" id="edit-fin-obs" value="${escapeHtml(f.observacao || '')}">
+                <div style="display:flex; gap:6px; margin-top:10px;">
+                  <button class="btn btn-small" id="save-edit-fin" style="margin-top:0; flex:1;">Salvar</button>
+                  <button class="btn btn-outline btn-small" id="cancel-edit-fin" style="margin-top:0; flex:1;">Cancelar</button>
+                </div>
+              </div>
+            `;
+          }
+
+          return `
+            <div class="booking-item">
+              <div class="booking-main">
+                <strong>${formatDate(f.data)} — ${escapeHtml(f.cliente)}</strong>
+                <div class="meta">${escapeHtml(f.servico)} · <strong>R$ ${parseFloat(f.valor).toFixed(2)}</strong> (${escapeHtml(f.formaPagamento)})</div>
+                ${f.observacao ? `<div class="meta" style="font-style:italic;">Obs: ${escapeHtml(f.observacao)}</div>` : ''}
+              </div>
+              <div class="booking-actions">
+                <button class="icon-btn" data-edit-fin="${f.id}">Editar</button>
+                <button class="icon-btn warn" data-del-fin="${f.id}">Excluir</button>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+
+  document.getElementById('back-admin').addEventListener('click', ()=>{
+    state.view = 'admin';
+    render();
+  });
+
+  document.getElementById('fin-month-select').addEventListener('change', (e)=>{
+    state.finMonth = e.target.value;
+    render();
+  });
+
+  document.getElementById('fin-date-select').addEventListener('change', (e)=>{
+    state.finDate = e.target.value;
+    render();
+  });
+
+  document.querySelectorAll('[data-edit-fin]').forEach(el => {
+    el.addEventListener('click', () => {
+      state.editingFinId = el.dataset.editFin;
+      render();
+    });
+  });
+
+  const saveEditFinBtn = document.getElementById('save-edit-fin');
+  if(saveEditFinBtn){
+    saveEditFinBtn.addEventListener('click', async () => {
+      const val = parseFloat(document.getElementById('edit-fin-valor').value) || 0;
+      const forma = document.getElementById('edit-fin-forma').value;
+      const obs = document.getElementById('edit-fin-obs').value.trim();
+
+      state.financials = state.financials.map(f => {
+        if(f.id === state.editingFinId){
+          return { ...f, valor: val, formaPagamento: forma, observacao: obs };
+        }
+        return f;
+      });
+      state.editingFinId = null;
+      await saveFinancials();
+      render();
+    });
+  }
+
+  const cancelEditFinBtn = document.getElementById('cancel-edit-fin');
+  if(cancelEditFinBtn){
+    cancelEditFinBtn.addEventListener('click', () => {
+      state.editingFinId = null;
+      render();
+    });
+  }
+
+  document.querySelectorAll('[data-del-fin]').forEach(el => {
+    el.addEventListener('click', async () => {
+      const id = el.dataset.delFin;
+      if(confirm('Deseja realmente excluir este lançamento financeiro?')){
+        const finItem = state.financials.find(f => f.id === id);
+        if(finItem && finItem.bookingId){
+          state.bookings = state.bookings.map(b => {
+            if(b.id === finItem.bookingId){
+              const { financeiroLancado, financeiroId, ...rest } = b;
+              return rest;
+            }
+            return b;
+          });
+          await saveBookings();
+        }
+        state.financials = state.financials.filter(f => f.id !== id);
+        await saveFinancials();
+        render();
+      }
+    });
+  });
+}
+
+loadData().then(()=>{
+  render();
+});
+</script>
+</body>
+</html>

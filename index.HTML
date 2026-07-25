@@ -172,6 +172,9 @@
     min-height: 48px;
     user-select:none;
   }
+  .service.full-width {
+    grid-column: span 2;
+  }
   .service strong{
     display:block; 
     font-family:'Inter',sans-serif; 
@@ -363,6 +366,7 @@ const SERVICES = [
   {id:'manutencao', nome:'Cílios — Manutenção'},
   {id:'sobrancelha', nome:'Sobrancelha'},
   {id:'henna', nome:'Sobrancelha com Henna'},
+  {id:'maquiagem', nome:'Maquiagem', fullWidth: true}
 ];
 const HORARIOS_KEY = 'horariosPorMes';
 const DEFAULT_SLOT_TIMES = (()=>{
@@ -753,7 +757,7 @@ function renderForm(){
       <div class="section-label">Serviço(s) <span style="text-transform:none; font-weight:normal; opacity:0.8;">(selecione um ou mais)</span></div>
       <div class="services">
         ${SERVICES.map(s=>`
-          <div class="service ${state.selectedServices.includes(s.id)?'selected':''}" data-id="${s.id}" role="button" tabindex="0">
+          <div class="service ${s.fullWidth ? 'full-width' : ''} ${state.selectedServices.includes(s.id)?'selected':''}" data-id="${s.id}" role="button" tabindex="0">
             <strong>${s.nome}</strong>
           </div>
         `).join('')}
